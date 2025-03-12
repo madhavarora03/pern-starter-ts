@@ -1,0 +1,14 @@
+import { z } from "zod";
+import dotenv from "dotenv";
+
+dotenv.config({ path: `.env.${process.env.NODE_ENV ?? "development"}.local` });
+
+const envSchema = z.object({
+  NODE_ENV: z.string({ required_error: "NODE_ENV is required!" }).min(1),
+  PORT: z.string({ required_error: "PORT is required!" }).min(1),
+  ADDRESS: z.string().default("0.0.0.0"),
+});
+
+const env = envSchema.parse(process.env);
+
+export const { NODE_ENV, PORT, ADDRESS } = env;
