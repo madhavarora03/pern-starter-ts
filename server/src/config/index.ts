@@ -1,7 +1,7 @@
 import { z } from "zod";
 import dotenv from "dotenv";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV ?? "development"}.local` });
+dotenv.config({ path: ".env" });
 
 const envSchema = z.object({
   NODE_ENV: z.string({ required_error: "NODE_ENV is required!" }).min(1),
