@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { Request } from "express";
 
 interface ApiResponseSuccess<T = unknown> {
   success: true;
@@ -15,3 +16,7 @@ interface ApiResponseError {
 export type ApiResponse<T = unknown> = ApiResponseSuccess<T> | ApiResponseError;
 
 export type UserProfile = Omit<User, "password" | "createdAt" | "updatedAt">;
+
+export interface AuthenticatedRequest extends Request {
+  user?: UserProfile;
+}
